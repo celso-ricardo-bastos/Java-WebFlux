@@ -1,7 +1,7 @@
 # Spring WebFlux: API Reativa de Demonstração
 
 Projeto de demonstração de programação reativa com Java 21 e Spring Boot WebFlux. Apresenta composição de fluxos assíncronos com `Mono`, chamadas HTTP não bloqueantes via `WebClient`, execução paralela de dependências, tratamento de timeout e observabilidade de latência. A oferta spread é o cenário prático usado para exercitar esses recursos.
-
+[https://celso-ricardo-bastos.github.io/Java-WebFlux/fed/]
 ## Fluxo
 
 ```text
