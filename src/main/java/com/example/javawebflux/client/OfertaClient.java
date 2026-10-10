@@ -15,7 +15,7 @@ public class OfertaClient {
 
     public OfertaClient(
             WebClient.Builder webClientBuilder,
-            @Value("${integracao.oferta.url:http://localhost:3001/oferta}") String ofertaUrl) {
+            @Value("${integracao.oferta.url:http://[::1]:3001/oferta}") String ofertaUrl) {
         this.webClient = webClientBuilder.build();
         this.ofertaUrl = ofertaUrl;
     }

@@ -13,6 +13,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -35,6 +36,23 @@ class OfertaSpreadControllerTest {
 
         @MockitoBean
         private OfertaClient ofertaClient;
+
+        @Test
+        void shouldAllowCorsPreflightFromConfiguredLocalFrontends() {
+                for (String origin : List.of(
+                                "http://127.0.0.1:3000",
+                                "http://127.0.0.1:5500",
+                                "http://localhost:5500")) {
+                        webTestClient.options()
+                                        .uri("/api/oferta-spread")
+                                        .header("Origin", origin)
+                                        .header("Access-Control-Request-Method", "POST")
+                                        .header("Access-Control-Request-Headers", "content-type")
+                                        .exchange()
+                                        .expectStatus().isOk()
+                                        .expectHeader().valueEquals("Access-Control-Allow-Origin", origin);
+                }
+        }
 
     @Test
         void shouldReturn422AndSkipOtherChecksWhenRestrictionIsTrue() {

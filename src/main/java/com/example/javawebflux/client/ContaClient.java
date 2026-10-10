@@ -15,7 +15,7 @@ public class ContaClient {
 
     public ContaClient(
             WebClient.Builder webClientBuilder,
-            @Value("${integracao.conta.url:http://localhost:3001/conta}") String contaUrl) {
+            @Value("${integracao.conta.url:http://[::1]:3001/conta}") String contaUrl) {
         this.webClient = webClientBuilder.build();
         this.contaUrl = contaUrl;
     }

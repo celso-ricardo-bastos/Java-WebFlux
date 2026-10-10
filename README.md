@@ -33,6 +33,18 @@ mvn spring-boot:run
 
 A aplicação fica disponível em `http://localhost:8080`.
 
+## Frontend demonstrativo
+
+O frontend vanilla fica em `fed/`. Não precisa instalar bibliotecas de frontend; o servidor local usa apenas o Node.js padrão. Com a API rodando, abra outro terminal na raiz do projeto e execute:
+
+```powershell
+node fed/server.js
+```
+
+Abra `http://127.0.0.1:5500`. Informe os 11 dígitos do CPF e clique em **Enviar requisição**. A tela envia um `POST` AJAX com `fetch`, exibe o status e o corpo da resposta, mede a duração no navegador e mostra o avanço em relação ao limite de 1 segundo.
+
+O frontend usa `http://localhost:8080/api/oferta-spread` por padrão; o campo Endpoint permite alterar a URL. O backend permite CORS somente para `localhost:5500` e `127.0.0.1:5500`. Não abra o HTML diretamente como `file://`, pois navegadores podem bloquear a chamada por CORS. Reinicie a aplicação Spring para carregar a configuração CORS.
+
 ## API da aplicação
 
 ### `POST /api/oferta-spread`
@@ -145,16 +157,16 @@ As URLs locais padrão podem ser sobrescritas por propriedades Spring:
 
 | Propriedade | Valor padrão |
 | --- | --- |
-| `integracao.restritivo.url` | `http://localhost:3001/restritivo` |
-| `integracao.conta.url` | `http://localhost:3001/conta` |
-| `integracao.oferta.url` | `http://localhost:3001/oferta` |
+| `integracao.restritivo.url` | `http://[::1]:3001/restritivo` |
+| `integracao.conta.url` | `http://[::1]:3001/conta` |
+| `integracao.oferta.url` | `http://[::1]:3001/oferta` |
 
 Variáveis de ambiente equivalentes:
 
 ```text
-INTEGRACAO_RESTRITIVO_URL=http://localhost:3001/restritivo
-INTEGRACAO_CONTA_URL=http://localhost:3001/conta
-INTEGRACAO_OFERTA_URL=http://localhost:3001/oferta
+INTEGRACAO_RESTRITIVO_URL=http://[::1]:3001/restritivo
+INTEGRACAO_CONTA_URL=http://[::1]:3001/conta
+INTEGRACAO_OFERTA_URL=http://[::1]:3001/oferta
 ```
 
 ## Testes

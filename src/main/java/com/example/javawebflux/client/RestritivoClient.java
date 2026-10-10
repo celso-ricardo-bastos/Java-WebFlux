@@ -15,7 +15,7 @@ public class RestritivoClient {
 
     public RestritivoClient(
             WebClient.Builder webClientBuilder,
-            @Value("${integracao.restritivo.url:http://localhost:3001/restritivo}") String restritivoUrl) {
+            @Value("${integracao.restritivo.url:http://[::1]:3001/restritivo}") String restritivoUrl) {
         this.webClient = webClientBuilder.build();
         this.restritivoUrl = restritivoUrl;
     }

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef">
+  <title>Flux Lab | Oferta Spread</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Flux Lab, início">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>flux<span class="brand-light">lab</span></span>
+      </a>
+      <div class="topbar-meta">
+        <span class="environment"><span class="status-dot"></span> AMBIENTE LOCAL</span>
+        <span class="version">WEBFLUX / DEMO 01</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span>01</span> FLUXO REATIVO · POST</div>
+        <h1 id="page-title">Oferta <span>Spread</span></h1>
+        <p>Envie um CPF e acompanhe a resposta da API WebFlux em tempo real.</p>
+      </section>
+
+      <section class="workspace" aria-label="Console de chamada da API">
+        <div class="request-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-index">REQUEST</span>
+              <h2>Nova consulta</h2>
+            </div>
+            <span class="method-tag">POST</span>
+          </div>
+
+          <form id="request-form" novalidate>
+            <label class="field-label" for="cpf">CPF do cliente</label>
+            <div class="cpf-field">
+              <span class="field-prefix" aria-hidden="true">ID</span>
+              <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" aria-describedby="cpf-hint" required>
+              <button class="clear-button" id="clear-cpf" type="button" aria-label="Limpar CPF" title="Limpar CPF">×</button>
+            </div>
+            <p class="field-hint" id="cpf-hint">Digite os 11 números. A validação de negócio acontece na API.</p>
+
+            <label class="field-label endpoint-label" for="endpoint">Endpoint</label>
+            <div class="endpoint-field">
+              <span class="endpoint-method">POST</span>
+              <input id="endpoint" name="endpoint" type="url" value="http://localhost:8080/api/oferta-spread" spellcheck="false" required>
+            </div>
+
+            <button class="submit-button" id="submit-button" type="submit">
+              <span class="button-label">Enviar requisição</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+          </form>
+
+          <div class="request-note">
+            <span class="note-line" aria-hidden="true"></span>
+            <p>A API consulta restrição primeiro. Sem restrição, conta e oferta são verificadas em paralelo, com limite total de 1 segundo.</p>
+          </div>
+        </div>
+
+        <div class="response-panel">
+          <div class="panel-heading response-heading">
+            <div>
+              <span class="section-index">RESPONSE</span>
+              <h2>Retorno da API</h2>
+            </div>
+            <span class="response-state" id="response-state">AGUARDANDO</span>
+          </div>
+
+          <div class="progress-section" id="progress-section" hidden>
+            <div class="progress-meta">
+              <span id="progress-label">Enviando requisição</span>
+              <span class="elapsed" id="elapsed">0 ms</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Tempo da requisição em relação ao limite de um segundo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span class="progress-fill" id="progress-fill"></span>
+              <span class="progress-marker" aria-hidden="true"></span>
+            </div>
+            <div class="progress-foot"><span>INÍCIO</span><span>LIMITE WEBFLUX · 1 S</span></div>
+          </div>
+
+          <div class="response-empty" id="response-empty">
+            <div class="empty-glyph" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p>A resposta da chamada aparecerá aqui.</p>
+            <span>Preencha o CPF e envie a requisição.</span>
+          </div>
+
+          <div class="response-result" id="response-result" hidden>
+            <div class="result-summary">
+              <div>
+                <span class="result-label">STATUS HTTP</span>
+                <strong id="http-status">—</strong>
+              </div>
+              <div class="result-duration">
+                <span class="result-label">DURAÇÃO</span>
+                <strong id="response-duration">—</strong>
+              </div>
+            </div>
+            <div class="payload-heading">
+              <span>BODY</span>
+              <span id="payload-format">JSON</span>
+            </div>
+            <pre class="payload" id="payload" aria-live="polite"></pre>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>SPRING WEBFLUX <i></i> WEBCLIENT <i></i> REACTOR</span>
+        <span>LATÊNCIA TOTAL OBSERVADA NO NAVEGADOR</span>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
