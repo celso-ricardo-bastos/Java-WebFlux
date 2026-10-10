@@ -49,7 +49,7 @@ public class OfertaSpreadService {
                 .timeout(Duration.ofSeconds(1))
                 .onErrorResume(TimeoutException.class, exception ->
                         Mono.just(ResponseEntity.badRequest()
-                                .body(new LatenciaResponse("maior que 1 minuto"))));
+                            .body(new LatenciaResponse("maior que 1 segundo"))));
     }
 
     public record PromocaoResponse(

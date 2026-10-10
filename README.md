@@ -75,7 +75,7 @@ curl.exe -X POST "http://localhost:8080/api/oferta-spread" `
 | `temRestritivo` é `true` | `422 Unprocessable Entity` | `{"status":"Possui restrição"}` |
 | Restrição é `false`; `possuiConta` e `temOferta` são `true` | `200 OK` | Template promocional abaixo |
 | Restrição é `false`; conta ou oferta é `false` | `200 OK` | Texto `OK` |
-| O fluxo leva mais de 1 segundo | `400 Bad Request` | `{"latencia":"maior que 1 minuto"}` |
+| O fluxo leva mais de 1 segundo | `400 Bad Request` | `{"latencia":"maior que 1 segundo"}` |
 
 Resposta promocional:
 
@@ -89,8 +89,6 @@ Resposta promocional:
   "currency": "USD"
 }
 ```
-
-> **Nota:** o timeout configurado é de 1 segundo, mas o texto atualmente devolvido no campo `latencia` diz `maior que 1 minuto`. A mensagem pode ser alinhada ao limite numa alteração posterior.
 
 ## APIs externas Mockoon
 

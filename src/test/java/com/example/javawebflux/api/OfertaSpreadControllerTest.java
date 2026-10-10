@@ -132,6 +132,6 @@ class OfertaSpreadControllerTest {
                 .expectStatus().isBadRequest()
                 .expectHeader().contentTypeCompatibleWith(MediaType.APPLICATION_JSON)
                 .expectBody()
-                .jsonPath("$.latencia").isEqualTo("maior que 1 minuto");
+                .jsonPath("$.latencia").isEqualTo("maior que 1 segundo");
     }
 }
