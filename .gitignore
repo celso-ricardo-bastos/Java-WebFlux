@@ -1,0 +1,43 @@
+# Java and Maven build output
+target/
+build/
+out/
+*.class
+*.war
+*.ear
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Test and coverage output
+coverage/
+*.exec
+
+# Logs and JVM crash reports
+*.log
+hs_err_pid*
+replay_pid*
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE metadata
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Personal VS Code settings; keep the shared launch configuration
+.vscode/*
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Operating system and editor temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~

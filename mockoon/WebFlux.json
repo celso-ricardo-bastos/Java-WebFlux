@@ -1,0 +1,133 @@
+{
+  "uuid": "b548a5a5-8fc9-4047-966d-80708f7c7c4d",
+  "lastMigration": 33,
+  "name": "WebFlux",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "58160583-4642-4885-8c8b-22e2801990a6",
+      "type": "http",
+      "documentation": "Verifica se o CPF possui restricao. A resposta true encerra o fluxo com HTTP 422.",
+      "method": "get",
+      "endpoint": "restritivo",
+      "responses": [
+        {
+          "uuid": "6c3475bd-8b9b-4190-be80-3667113a2bde",
+          "body": "{\"temRestritivo\": false}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Sem restricao",
+          "headers": [{"key": "Content-Type", "value": "application/json"}],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "86459e5d-7ba6-4df7-9c76-12b88d9a0c2e",
+      "type": "http",
+      "documentation": "Verifica se o CPF possui conta.",
+      "method": "get",
+      "endpoint": "conta",
+      "responses": [
+        {
+          "uuid": "c9b09459-1835-490f-9811-63c41a91c495",
+          "body": "{\"possuiConta\": true}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Possui conta",
+          "headers": [{"key": "Content-Type", "value": "application/json"}],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c08c26fc-7f7c-4aa6-b430-72e30d6a0d3f",
+      "type": "http",
+      "documentation": "Verifica se existe oferta elegivel. Latencia inicial de 1000 ms para testar o timeout do servico consumidor.",
+      "method": "get",
+      "endpoint": "oferta",
+      "responses": [
+        {
+          "uuid": "a7d60317-3705-4381-908b-b0af2d632ec7",
+          "body": "{\"temOferta\": true}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "Tem oferta (latencia de timeout)",
+          "headers": [{"key": "Content-Type", "value": "application/json"}],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {"type": "route", "uuid": "58160583-4642-4885-8c8b-22e2801990a6"},
+    {"type": "route", "uuid": "86459e5d-7ba6-4df7-9c76-12b88d9a0c2e"},
+    {"type": "route", "uuid": "c08c26fc-7f7c-4aa6-b430-72e30d6a0d3f"}
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {"key": "Content-Type", "value": "application/json"},
+    {"key": "Access-Control-Allow-Origin", "value": "*"},
+    {"key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"},
+    {"key": "Access-Control-Allow-Headers", "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"}
+  ],
+  "proxyReqHeaders": [{"key": "", "value": ""}],
+  "proxyResHeaders": [{"key": "", "value": ""}],
+  "data": [],
+  "callbacks": []
+}
